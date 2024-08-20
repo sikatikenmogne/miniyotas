@@ -1,0 +1,33 @@
+#pull the image
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+
+# Install bash
+# RUN apt-get update && apt-get install -y bash
+
+# Create a non-root user and group
+# RUN addgroup -S devgroup && adduser -S devuser -G devgroup
+
+# set the working directory in the container
+RUN mkdir /app
+
+#change mode of the container directory
+RUN chmod 777 /app
+
+# set the working directory in the container
+WORKDIR /app
+
+#copy the files to the container directory
+COPY package.json /app/package.json
+COPY . /app
+
+# install dependencies
+RUN yarn install
+
+# expose the port
+EXPOSE 3000
+
+# Set the user to the non-root user
+# USER devuser
+
+# run the container
+CMD ["yarn", "dev"]

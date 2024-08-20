@@ -1,0 +1,102 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "miniyotas",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"build":{
+		"dockerfile": "../Dockerfile.dev"
+		// "context": ".."
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {},
+		"ghcr.io/wxw-matt/devcontainer-features/script_runner:0": {}
+	},
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "yarn install && git config --global --add safe.directory /workspaces/miniyotas && git config --global core.autocrlf input",
+
+	// Configure tool-specific properties.
+	"customizations":{
+		"settings": {
+			"terminal.integrated.shell.linux": "/bin/sh",
+			"terminal.integrated.shellArgs.linux": ["-l"],
+			"editor.formatOnPaste": true,
+			"git.autofetch": true,
+			"[markdown]": {
+				"editor.wordWrap": "on"
+			},
+			"[json]": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode"
+			},
+			"[jsonc]": {
+				"editor.defaultFormatter": "vscode.json-language-features"
+			},
+			"[html]": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode"
+			},
+			"[javascript]": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode"
+			},
+			"[typescript]": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode"
+			},
+			"workbench.iconTheme": "material-icon-theme",
+			"workbench.colorTheme": "GitHub Dark Default",
+			"files.autoSave": "afterDelay"
+		},
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-typescript-next",
+				"adpyke.codesnap",
+				"bierner.github-markdown-preview",
+				"bierner.markdown-checkbox",
+				"bierner.markdown-emoji",
+				"bierner.markdown-footnotes",
+				"bierner.markdown-mermaid",
+				"bierner.markdown-preview-github-styles",
+				"bierner.markdown-yaml-preamble",
+				"christian-kohler.npm-intellisense",
+				"codezombiech.gitignore",
+				"davidanson.vscode-markdownlint",
+				"donjayamanne.githistory",
+				"eamodio.gitlens",
+				"editorconfig.editorconfig",
+				"firefox-devtools.vscode-firefox-debug",
+				"github.codespaces",
+				"github.copilot",
+				"github.copilot-chat",
+				"github.github-vscode-theme",
+				"github.remotehub",
+				"github.vscode-github-actions",
+				"github.vscode-pull-request-github",
+				"humao.rest-client",
+				"mhutchie.git-graph",
+				"mikestead.dotenv",
+				"ms-azuretools.vscode-docker",
+				"ms-ceintl.vscode-language-pack-fr",
+				"ms-edgedevtools.vscode-edge-devtools",
+				"ms-vscode-remote.remote-containers",
+				"ms-vscode-remote.remote-wsl",
+				"ms-vscode.azure-repos",
+				"ms-vscode.remote-repositories",
+				"orta.vscode-jest",
+				"pkief.material-icon-theme",
+				"redhat.vscode-yaml",
+				"waderyan.gitblame",
+				"wakatime.vscode-wakatime",
+				"xabikos.javascriptsnippets"
+			]
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devuser"
+}
